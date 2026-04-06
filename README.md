@@ -1,29 +1,22 @@
 
 🚀 Multithreaded C++ Performance Lab
-Bu depo, Konya Teknik Üniversitesi bünyesindeki yüksek lisans çalışmalarım kapsamında geliştirdiğim, C++ dilinde paralel programlama ve multithreading mimarileri üzerine odaklanan projelerimi içermektedir.
+This repository showcases high-performance C++ projects developed during my Master’s in Data Science and Artificial Intelligence. It focuses on parallel programming architectures, moving from text-based log analysis to real-time computer vision streams.
 
-📊 1. Multi-Threaded Log Analyzer
-Bu çalışma, büyük ölçekli sistem log dosyalarını (Hadoop_2k.log) analiz ederek Single-Thread ve Multi-Thread yöntemleri arasındaki performans farklarını karşılaştırır.
+📸 1. Real-Time Face Blurring (Computer Vision)
+This system utilizes a Caffe-based ResNet-10 SSD model and a Producer-Consumer architecture to achieve zero-latency face anonymization.
+Before (Input),After (Output),Performance Comparison
+,,
 
-Teknik: std::mutex ve lock_guard kullanılarak thread-safe veri yönetimi sağlanmıştır.
+Technical Insight: The multithreaded architecture optimizes frame processing by utilizing an 8-threaded producer-consumer system on Apple Silicon. By synchronizing threads with std::condition_variable and skipping stale frames, processing time was reduced from 20ms to 8ms, maintaining a steady 60+ FPS.
 
-Kapsam: Dosya okuma ve metin tabanlı veri işleme süreçlerinde paralelleştirme başarımı ölçülmüştür.
+📊 2. Multi-Threaded Log Analyzer
+A high-performance tool that analyzes large-scale system logs (e.g., Hadoop_2k.log) using both single-threaded and multi-threaded approaches to compare efficiency.
 
-📸 2. Real-Time Face Blurring (Gelişmiş Seviye)
-Log analizindeki multithreading tecrübesini bir adım öteye taşıyarak, yoğun veri akışı olan video işleme alanına odaklanılmıştır. Bu proje, OpenCV DNN modülünü kullanarak videolardaki yüzleri gerçek zamanlı tespit eder ve bulanıklaştırır.
+Efficiency: Parallel processing reduces execution time by approximately 50% compared to the single-threaded baseline.
 
-🛠 Öne Çıkan Özellikler
-Mimarî: Görüntü yakalama ve işleme süreçleri Producer-Consumer (Üretici-Tüketici) tasarım deseniyle std::condition_variable kullanılarak senkronize edilmiştir.
+Thread-Safety: Implements robust counter management using std::mutex and std::lock_guard.
 
-Yapay Zeka: Caffe tabanlı ResNet-10 SSD modeli kullanılarak yüksek doğruluklu yüz tespiti yapılır.
+Core Stack: Developed with C++11, utilizing <thread> and <chrono> libraries for precise performance benchmarking.
 
-Optimizasyon: MacBook M-serisi (8-thread) üzerinde sıfır gecikme (Zero Latency) sağlamak için özel bir kuyruk (queue) temizleme mantığı geliştirilmiştir.
-
-# Projeyi derlemek için:
-g++ -std=c++17 Face-Blurring/video_processor.cpp -o blur_exe `pkg-config --cflags --libs opencv4`
-
-# Çalıştırmak için:
-./blur_exe
-
-🎓 Akademik Not
-Bu projeler, Yazılım Mühendisliği temelleri üzerine inşa edilen Veri Bilimi ve Yapay Zeka uzmanlık sürecindeki teknik gelişimimi temsil etmektedir.
+🎓 Academic Context
+These projects represent my technical evolution within the software engineering domain, bridging the gap between theoretical parallel computing and practical AI implementation.
